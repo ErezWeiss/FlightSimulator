@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for Joystick.xaml
+    /// Interaction logic, for Joystick.xaml
     /// </summary>
     public partial class Joystick : UserControl
     {
