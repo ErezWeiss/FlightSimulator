@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btnStart"  HorizontalAlignment="Center"   Padding="5" RenderTransformOrigin="-0.268,0.482" Content="Start Game"/>
-            <Button x:Name="btnStart2" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="1"   Padding="5" RenderTransformOrigin="-0.268,0.482" Content="Settings"/>
+            <Button x:Name="btnStart2" Command="{Binding SettingCommand}" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="1"   Padding="5" RenderTransformOrigin="-0.268,0.482" Content="Settings"/>
         </Grid>
         <TextBlock Grid.Row="1" Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center">Lon</TextBlock>
         <d3:ChartPlotter Grid.Row="1" LegendVisible="False" Name="plotter" RenderTransformOrigin="0.495,0.515" Grid.Column="1"/>

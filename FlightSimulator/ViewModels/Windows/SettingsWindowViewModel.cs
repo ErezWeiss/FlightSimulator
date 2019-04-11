@@ -13,10 +13,11 @@ namespace FlightSimulator.ViewModels.Windows
     public class SettingsWindowViewModel : BaseNotify
     {
         private ISettingsModel model;
-
-        public SettingsWindowViewModel(ISettingsModel model)
+        private Window window;
+        public SettingsWindowViewModel(ISettingsModel model, Window window)
         {
             this.model = model;
+            this.window = window;
         }
 
         public string FlightServerIP
@@ -74,6 +75,9 @@ namespace FlightSimulator.ViewModels.Windows
         private void OnClick()
         {
             model.SaveSettings();
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            window.Close();
         }
         #endregion
 
@@ -89,6 +93,9 @@ namespace FlightSimulator.ViewModels.Windows
         private void OnCancel()
         {
             model.ReloadSettings();
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            window.Close();
         }
         #endregion
         #endregion
