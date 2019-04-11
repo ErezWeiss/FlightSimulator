@@ -23,12 +23,20 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center">Lon</TextBlock>
-        <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter">
-        </d3:ChartPlotter>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnStart"  HorizontalAlignment="Center"   Padding="5" RenderTransformOrigin="-0.268,0.482" Content="Start Game"/>
+            <Button x:Name="btnStart2" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="1"   Padding="5" RenderTransformOrigin="-0.268,0.482" Content="Settings"/>
+        </Grid>
+        <TextBlock Grid.Row="1" Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center">Lon</TextBlock>
+        <d3:ChartPlotter Grid.Row="1" LegendVisible="False" Name="plotter" RenderTransformOrigin="0.495,0.515" Grid.Column="1"/>
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
     </Grid>
 </UserControl>
