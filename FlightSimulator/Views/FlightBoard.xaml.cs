@@ -56,11 +56,8 @@ namespace FlightSimulator.Views
                 Point p1 = new Point(flightBoardVM.Lat, flightBoardVM.Lon);
                 planeLocations.AppendAsync(Dispatcher, p1);
                 isFirst = true;
-
             }
         }
-
     }
-
 }
 

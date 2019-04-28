@@ -44,11 +44,15 @@ namespace FlightSimulator.Model
         {
             IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
                 ApplicationSettingsModel.Instance.FlightCommandPort);
-            client = new TcpClient();
+            client = retTcpClient();
             client.Connect(iPEndPoint);
             isConnected = true;
-            Console.WriteLine("Command channel :You are connected");
+            Console.WriteLine("You are connected in Command channel");
+        }
 
+        private TcpClient retTcpClient()
+        {
+            return new TcpClient();
         }
 
         public void DisConnect()
@@ -59,7 +63,8 @@ namespace FlightSimulator.Model
 
         public void Send(string message)
         {
-            string[] commands = ParseMessage(message);
+            string[] commands = message.Split(new[] { Environment.NewLine },
+            StringSplitOptions.None);
             mutex.WaitOne();
             Thread thread = new Thread(() => RunSend(commands, client));
             thread.Start();
@@ -79,13 +84,6 @@ namespace FlightSimulator.Model
                 System.Threading.Thread.Sleep(2000);
             }
         }
-
-        private string[] ParseMessage(string message)
-        {
-            string[] commands;
-            return commands = message.Split(new[] { Environment.NewLine },
-            StringSplitOptions.None);
-        }
-
+        
     }
 }

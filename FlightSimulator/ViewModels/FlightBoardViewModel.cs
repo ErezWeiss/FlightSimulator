@@ -43,7 +43,6 @@ namespace FlightSimulator.ViewModels
         }
         private void SettingsClick()
         {
-            Console.WriteLine("Hi");
             var settings = new Settings();
             settings.Show();
 

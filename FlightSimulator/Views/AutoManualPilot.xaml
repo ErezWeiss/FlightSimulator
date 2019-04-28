@@ -33,10 +33,8 @@
                     </Grid.ColumnDefinitions>
                     <Controls:Joystick x:Name="Joystick" Grid.Column="4" Margin="4,33,8,3" Grid.RowSpan="4" 
                                       Aileron="{Binding AileronCommand, Mode=OneWayToSource}"
-                        Elevator="{Binding ElevatorCommand, Mode=OneWayToSource}" ></Controls:Joystick>
-                    <TextBlock 
-        
-        Text="← elevator →" Grid.Row="1" Grid.Column="6"  FontSize="20" Margin="32,1,-86,137" Grid.RowSpan="2"  >
+                                      Elevator="{Binding ElevatorCommand, Mode=OneWayToSource}" ></Controls:Joystick>
+                    <TextBlock Text="← elevator →" Grid.Row="1" Grid.Column="6"  FontSize="20" Margin="32,1,-86,137" Grid.RowSpan="2">
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>

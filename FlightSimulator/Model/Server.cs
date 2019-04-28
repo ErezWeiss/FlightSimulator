@@ -46,17 +46,7 @@ namespace FlightSimulator.Model
             get { return lat; }
         }
 
-        public static Server Instance
-        {
-            get
-            {
-                if (m_Instance == null)
-                {
-                    m_Instance = new Server();
-                }
-                return m_Instance;
-            }
-        }
+        public static Server Instance => m_Instance == null ? m_Instance = new Server() : m_Instance;
 
         private Server()
         {
@@ -64,23 +54,22 @@ namespace FlightSimulator.Model
             shouldStop = false;
         }
 
-        // make a server socket for the simulator to send data .
+        // connect to the game
         public void connectServer()
         {
-
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
         ApplicationSettingsModel.Instance.FlightInfoPort);
             _listener = new TcpListener(ep);
             _listener.Start();
             _client = _listener.AcceptTcpClient();
-            Console.WriteLine("Info channel: Client connected");
+            Console.WriteLine("Connected as client");
 
             Thread thread = new Thread(() => listen(_client, _listener));
             thread.Start();
 
         }
 
-        // recieves the data from the plane and split the message to lon and lat
+        // recieves the lon and lat from the plane
         public void listen(TcpClient _client, TcpListener _listener)
         {
             Byte[] bytes;
@@ -93,7 +82,12 @@ namespace FlightSimulator.Model
                     bytes = new byte[_client.ReceiveBufferSize];
                     ns.Read(bytes, 0, _client.ReceiveBufferSize);
                     string msg = Encoding.ASCII.GetString(bytes); //the message incoming
-                    splitMessage(msg);
+                    string[] splitMs = msg.Split(',');
+                    if (msg.Contains(","))
+                    {
+                        Lon = double.Parse(splitMs[0]);
+                        Lat = double.Parse(splitMs[1]);
+                    }
                 }
             }
             ns.Close();
@@ -101,17 +95,6 @@ namespace FlightSimulator.Model
             _listener.Stop();
         }
 
-        // solit the server to lon and lat
-        public void splitMessage(string msg)
-        {
-            string[] splitMs = msg.Split(',');
-            if (msg.Contains(","))
-            {
-                Lon = double.Parse(splitMs[0]);
-                Lat = double.Parse(splitMs[1]);
-            }
-
-        }
 
         public void DisConnect()
         {
