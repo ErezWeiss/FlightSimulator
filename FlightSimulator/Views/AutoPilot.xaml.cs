@@ -25,8 +25,8 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
             
-            AutoPilotViewModel hed = new AutoPilotViewModel();
-            DataContext = hed;
+            AutoPilotViewModel AutoPilotVM = new AutoPilotViewModel();
+            DataContext = AutoPilotVM;
         }
     }
 }

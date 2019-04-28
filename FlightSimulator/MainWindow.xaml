@@ -11,9 +11,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-         </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*" />
+            <ColumnDefinition Width="114*" />
+        </Grid.ColumnDefinitions>
         <Controls:FlightBoard  Grid.Column="0"/>
         <Controls:AutoManualPilot Grid.Column="1"/>
 

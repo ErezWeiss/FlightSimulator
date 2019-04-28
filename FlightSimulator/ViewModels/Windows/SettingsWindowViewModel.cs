@@ -13,7 +13,7 @@ namespace FlightSimulator.ViewModels.Windows
     public class SettingsWindowViewModel : BaseNotify
     {
         private ISettingsModel model;
-        private Window window;
+        Window window;
         public SettingsWindowViewModel(ISettingsModel model, Window window)
         {
             this.model = model;

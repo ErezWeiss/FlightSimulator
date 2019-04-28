@@ -7,41 +7,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
+        private Server modelServer;
 
+        public FlightBoardViewModel(Server server)
+        {
+            this.modelServer = server;
+            modelServer.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged(e.PropertyName);
+            };
+        }
         public double Lon
         {
-            get;
+            get { return modelServer.Lon; }
         }
 
         public double Lat
         {
-            get;
+            get { return modelServer.Lat; }
         }
 
-        
-        #region SettingCommand
-        private ICommand _settingCommand;
-        public ICommand SettingCommand
+        private ICommand _settingsCommand;
+        public ICommand SettingsCommand
         {
             get
             {
-                return _settingCommand ?? (_settingCommand = new CommandHandler(() => OnClick()));
+                return _settingsCommand ?? (_settingsCommand = new CommandHandler(() => SettingsClick()));
             }
         }
-        private void OnClick()
+        private void SettingsClick()
         {
-            var setting = new Setting();
-            setting.Show();
-           
-        }
-        #endregion
+            Console.WriteLine("Hi");
+            var settings = new Settings();
+            settings.Show();
 
-       
-        
+        }
+
+        private ICommand _connectCommand;
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return _connectCommand ?? (_connectCommand = new CommandHandler(() => ConnectClick()));
+            }
+        }
+        private void ConnectClick()
+        {
+            Server.Instance.connectServer();
+            CommandConnect.Instance.ConnetAsClient();
+
+        }
     }
 }

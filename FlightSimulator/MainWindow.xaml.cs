@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,14 @@ namespace FlightSimulator
     {
         public MainWindow()
         {
+            Closed += MainWindowClosed;
             InitializeComponent();
+        }
+
+        private void MainWindowClosed(object sender, EventArgs e)
+        {
+            if (Server.Instance.isConnected()) { Server.Instance.DisConnect(); }
+            if (CommandConnect.Instance.IsConnected) { CommandConnect.Instance.DisConnect(); }
         }
     }
 }

@@ -15,7 +15,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox  Width="Auto" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Commands}"/>
+        <TextBox  Width="Auto" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{Binding BackgroundColor,UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button x:Name = "button1"  
             Content = "OK"
@@ -24,6 +25,7 @@
             Grid.Column="0"
             Margin="50"    
             Grid.Row="1"
+                Command="{Binding OkCommand}"
                 />
 
         <Button x:Name = "button2"  
@@ -32,6 +34,7 @@
             Grid.Column="1"  
             Grid.Row="1"
             HorizontalAlignment = "Center"  
-            />
+            Command="{Binding ClearCommand}"
+                />
     </Grid>
 </UserControl>
